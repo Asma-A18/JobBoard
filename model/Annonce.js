@@ -5,11 +5,6 @@ const annonceShcema=mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
       },
-      employe: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Employe',
-      },
-
 ref : 
 {type : String,
 required : true},

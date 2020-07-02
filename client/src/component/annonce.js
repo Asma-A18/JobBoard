@@ -41,13 +41,13 @@ class JobsList extends React.Component {
   <div className="company-logo-img">
     <img src="https://s3-ap-southeast-1.amazonaws.com/hs.user-files/employer_logo/346/primetech-technology.png" />
   </div>
-  <p className="job-title">{el.title}</p>
-  <p className="company-name">{el.field}</p>
+  <p className="job-title">{el.ref}</p>
+  <p className="company-name">{el.name}</p>
   <p className="desc">{el.description}</p>
-
+  <p className="desc">{el.deadline}</p>
   <div class="skills-container">
-    <div className="skill">{el.pay} DT</div>
-    <div className="skill">{el.regime}</div>
+    <div className="skill">{el.telephone}</div>
+    <div className="skill">{el.email}</div>
   </div>
   <button onClick={()=>this.props.deleteoffer(el._id)} class="apply">Delete</button>
   <a href="#"></a>
@@ -72,72 +72,8 @@ class JobsList extends React.Component {
 const mapStateToProps = state => ({
   isAuth: state.authReducer.isAuth,
   profile: state.authReducer.profile,
-  jobsList:state.jobs.offers
+  jobsList:state.jobs.annonces
   
 
 });
 export default connect(mapStateToProps, { isAuthorized,getoffers,deleteoffer,getcurrentAnnonce })(JobsList);
-
-
-{/* <div className="container-cards">
-{this.props.jobsList.map((el,i)=>(
-    <div className="container-card">
-      <Card
-hoverable
-style={{ width: 240 }}
-cover={<img alt="example" src="https://www.best-job-interview.com/images/joboffer1.jpg" />}
->
-<div className="containerr">
-<span>Job Title</span>
-<Meta title={el.title} />
-</div>
-
-<div className="containerr">
-<span>Job Field:</span>
-<Meta description={el.field}/>
-</div>
-<div className="containerr">
-<span>Job Description:</span>
-<Meta description={el.description}/>
-</div>
-
-
-
-<div className="container-btn">
-<Button onClick={()=>this.props.deleteoffer(el._id)} type="primary" block>
-Delete
-</Button>
-<AddOffer offers={el}/>
-</div>
-
-</Card>
-    </div>
-))}
-</div> */}
-
-
-
-
-  {/* <ul class="profile-social-links">
-    <li>
-      <a target="_blank" href="https://www.facebook.com/creativedonut">
-        <i class="fa fa-facebook"></i>
-      </a>
-    </li>
-    <li>
-      <a target="_blank" href="https://twitter.com/dropyourbass">
-        <i class="fa fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a target="_blank" href="https://github.com/vipulsaxena">
-        <i class="fa fa-github"></i>
-      </a>
-    </li>
-    <li>
-      <a target="_blank" href="https://www.behance.net/vipulsaxena">
-       
-        <i class="fa fa-behance"></i>
-      </a>
-    </li>
-  </ul> */}

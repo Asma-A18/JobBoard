@@ -11,31 +11,12 @@ annonces:[], error: {},
 const annonceReducer = (state=initialState, action) =>{
     const { type, payload } = action;
     switch(type){
-      
-        case ANNONCE_LOADING:
-        return {
-            ...state,
-            isLoading:true
-          };
+    
         case GET_ANNONCE:
           
           return {
             ...state,
             annonce: payload,
-            isLoading: false,
-          };
-        case ANNONCE_ERROR:
-          return {
-            ...state,
-            error: payload,
-            isLoading: false,
-           
-          };
-        case DELETE_ANNONCE:
-          return {
-            ...state,
-            annonce: null,
-    
             isLoading: false,
           };
         case GET_ANNONCES:
@@ -44,12 +25,7 @@ const annonceReducer = (state=initialState, action) =>{
             annonces: payload,
             isLoading: false,
           };
-          case ADD_ANNONCE:
-            return {
-              ...state,
-              annonces: payload,
-              isLoading: false,
-            };
+   
         default:
           return state;
       }

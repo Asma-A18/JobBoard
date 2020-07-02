@@ -34,13 +34,15 @@ router.post("/", isAuth(), async (req, res) => {
         }
       
       })
+
+
        //get annonce user
 
        router.get('/is', isAuth(), async (req, res) => {
         try {
           const annonce = await Annonce.find({
             user: req.user.id,
-          }).populate('user', [
+          }).populate('User', [
             'name','email'
           ]);
           if (!annonce)
@@ -70,17 +72,52 @@ router.post("/", isAuth(), async (req, res) => {
         }
       })
 
+
+      
+      //delete annonce
+
+      router.delete("/:id",isAuth(),async(req,res)=>{
+
+        try {
+          let id_annonce=req.params.id
+          await Annonce.findOneAndDelete({ _id:id_annonce})
+          res.send({success:true})
+          
+        } catch (err) {
+          console.error(err.message)
+          res.send({success:false})
+          
+        }
+      })
+
+      router.put('/:id',async(req,res)=>{
+        try {
+          const offerslist=req.body
+          await Annonce.findOneAndUpdate({_id:req.params.id},{$set:{...offerslist}})
+          res.send({success:true})
+        } catch (err) {
+          console.error(err.message)
+          res.send({success:false})
+          // res.status(500).send("error server")
+        }
+      })
+      
+
+
+
+
+
 //recherche selon name
-router.get("/:name",async(req,res)=>{
-    try {
-        let name_annonce=req.params.name
-      const annonce=await Annonce.find({ name:name_annonce})
-      annonce.length===0?res.status(400).json({msg:"annonce not existe"}):res.json(annonce)
-    } catch (err) {
-      console.error(err)
-    }
+// router.get("/:name",async(req,res)=>{
+//     try {
+//         let name_annonce=req.params.name
+//       const annonce=await Annonce.find({ name:name_annonce})
+//       annonce.length===0?res.status(400).json({msg:"annonce not existe"}):res.json(annonce)
+//     } catch (err) {
+//       console.error(err)
+//     }
   
-  })
+//   })
 
 
   

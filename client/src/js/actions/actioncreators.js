@@ -4,9 +4,9 @@ import { ANNONCE_LOADING,GET_ERRORS,GET_ANNONCES,AUTH_USER,LOGOUT,GET_ANNONCE} f
 
 
 export const getoffers=()=>dispatch=>{
-    axios.get('/annonce').then(res=>
+    axios.get('/annonce/all').then(res=>
         dispatch({
-            type:GET_OFFERS,
+            type:GET_ANNONCES,
             payload:res.data
         })
         )
@@ -21,7 +21,7 @@ export const addjoboffer = (newoffer) => async dispatch => {
     };
     try {
       await axios.post(`/annonce`,newoffer, config).then(res=>
-      dispatch(getoffers()))
+      dispatch(getcurrentAnnonce()))
          
     } catch (error) {
       alert(error.response.data);
@@ -39,7 +39,7 @@ export const deleteoffer = (id) => async dispatch => {
     };
     try {
       await axios.delete(`/annonce/${id}`, config).then(res=>
-      dispatch(getoffers()))
+      dispatch(getcurrentAnnonce()))
          
     } catch (error) {
       alert('errooooor');
@@ -57,7 +57,7 @@ export const editoffer = (id,newoffer) => async dispatch => {
     };
     try {
       await axios.put(`/annonce/${id}`,newoffer, config).then(res=>
-      dispatch(getoffers()))
+      dispatch(getcurrentAnnonce()))
          
     } catch (error) {
       alert(error.response.data);
@@ -78,13 +78,13 @@ export const editoffer = (id,newoffer) => async dispatch => {
   try {
        const res = await axios.get('/annonce/is',config);
      dispatch({
-         type: GET_ANNONCE,
+         type: GET_ANNONCES,
           payload: res.data,
                  });
       } 
      catch(err)
        { dispatch({
-            type:GET_ANNONCE,
+            type:GET_ANNONCES,
              payload: {},
        })}}
 

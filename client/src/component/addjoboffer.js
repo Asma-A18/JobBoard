@@ -6,11 +6,16 @@ import {addjoboffer,editoffer} from "../js/actions/actioncreators"
 class AddOffer extends Component {
     state = { 
         visible: false,
-        title:this.props.offers?this.props.offers.title:"",
-        field:this.props.offers?this.props.offers.field:"",
+        ref:this.props.offers?this.props.offers.ref:"",
+        name:this.props.offers?this.props.offers.name:"",
+        telephone:this.props.offers?this.props.offers.telephone:"",
+        email:this.props.offers?this.props.offers.email:"",
         description:this.props.offers?this.props.offers.description:"",
-        regime:this.props.offers?this.props.offers.regime:"",
-        pay:this.props.offers?this.props.offers.pay:""
+        deadline:this.props.offers?this.props.offers.deadline:"",
+        date:this.props.offers?this.props.offers.date:"",
+
+
+
     };
 
     handleChange=(event)=>{
@@ -22,11 +27,14 @@ class AddOffer extends Component {
 
     initState=()=>{
         this.setState({
-            title:"",
-            field:"",
-            description:"",
-            regime: "",
-            pay : ""       })
+            ref:"",
+            name:"",
+            telephone:"",
+            email: "",
+            description : "" ,
+            deadline : "",
+            date : ""
+                })
     }
 
     showModal = () => {
@@ -52,20 +60,23 @@ class AddOffer extends Component {
     addEditoffer=()=>{
         this.props.offers?
         this.props.editoffer(this.props.offers._id,{
-            title:this.state.title,
-            field:this.state.field,
+            ref:this.state.ref,
+            name:this.state.name,
+            telephone:this.state.telephone,
+            email:this.state.email,
             description:this.state.description,
-            regime:this.state.regime,
-            pay:this.state.pay
+            deadline:this.state.deadline,
+            date:this.state.date
+
 
         }):
         this.props.addjoboffer(this.state);
         this.verifyChamps()
     }
 
-
+    // ref,name,telephone,email,description,deadline,date
     verifyChamps=()=>{
-      if (!this.state.title || !this.state.field || !this.state.description || !this.state.regime || !this.state.pay) {
+      if (!this.state.ref || !this.state.name || !this.state.deadline || !this.state.description || !this.state.telephone || !this.state.email) {
 alert('All Fields are required !')
       }
 
@@ -85,11 +96,13 @@ alert('All Fields are required !')
           onCancel={this.handleCancel}
         >
             <div className="container-input">
-          <input className="input" placeholder="Add Job Title" type="text"  name="title" value={this.state.title} onChange={this.handleChange} />
-          <input className="input" placeholder="Add Employer's name" type="text" name="field" value={this.state.field} onChange={this.handleChange}/>
+          <input className="input" placeholder="Add Job Title" type="text"  name="ref" value={this.state.ref} onChange={this.handleChange} />
+          <input className="input" placeholder="Add Employer's name" type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
           <input className="input" placeholder="Add Post Description" type="text"   name="description" value={this.state.description} onChange={this.handleChange}/>
-          <input className="input" placeholder="Add hourly regime" type="text"   name="regime" value={this.state.regime} onChange={this.handleChange}/>
-          <input className="input" placeholder="Add hourly pay" type="number"   name="pay" value={this.state.pay} onChange={this.handleChange}/>
+          <input className="input" placeholder="Add  your companys email" type="text"   name="email" value={this.state.email} onChange={this.handleChange}/>
+          <input className="input" placeholder="Add your phone number" type="number"   name="telephone" value={this.state.telephone} onChange={this.handleChange}/>
+          <input className="input" placeholder="Deadline : example 12/12/2020" type="date"   name="deadline" value={this.state.deadline} onChange={this.handleChange}/>
+          <input className="input" placeholder="date" type="date"   name="date" value={this.state.date} onChange={this.handleChange}/>
 
 
           </div>
