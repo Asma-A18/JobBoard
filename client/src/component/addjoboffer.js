@@ -76,8 +76,10 @@ class AddOffer extends Component {
 
     // ref,name,telephone,email,description,deadline,date
     verifyChamps=()=>{
-      if (!this.state.ref || !this.state.name || !this.state.deadline || !this.state.description || !this.state.telephone || !this.state.email) {
+      if (!this.state.ref || !this.state.name || !this.state.deadline || !this.state.description || !this.state.telephone || !this.state.email)  {
 alert('All Fields are required !')
+      } else if (this.state.email.indexOf("@") === -1 ) {
+        alert('Please enter a valid email address')
       }
 
     }
