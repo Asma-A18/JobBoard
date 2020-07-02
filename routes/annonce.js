@@ -5,7 +5,7 @@ const isAuth = require("../middlewares/passport-Setup");
 const router = express.Router();
 const {validateAnnonceInput, validator} = require('../middlewares/annonceValidator')
 
-router.post("/", isAuth(), async (req, res) => {
+router.post("/", isAuth(),validateAnnonceInput(), async (req, res) => {
    
         try {
             

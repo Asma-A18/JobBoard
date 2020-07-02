@@ -2,11 +2,12 @@ const {check, validationResult} = require('express-validator')
 
 exports.validateAnnonceInput = () =>
     
-    [check('title', 'ref field is required !').notEmpty(),
-    check('field', 'this field is required !').notEmpty(),
+    [check('ref', 'ref field is required !').notEmpty(),
+    check('name', 'this field is required !').notEmpty(),
     check('description', 'this field is required !').notEmpty(),
-    check('regime', 'this field is required !').notEmpty(),
-    check('pay', 'this field is required !').notEmpty()]
+    check('email', 'this field is required !').notEmpty(),
+    check('telephone', 'this field is required !').notEmpty()],
+    check('deadline', 'this field is required !').notEmpty(),
 
 exports.validator = (req, res, next) =>{
     const errors = validationResult(req)

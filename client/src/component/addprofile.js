@@ -31,7 +31,16 @@ onSubmit=(e)=>{
 
   } 
   this.props.createProfile(profileData,this.props.history)
+  this.verifyChamps()
+
 }
+
+verifyChamps=()=>{
+    if (  !this.state.about || !this.state.address || !this.state.phone || !this.state.field)  {
+alert('All Fields are required !')
+    }
+  }
+
 
 handleChange=(e)=>{
     this.setState({
@@ -53,7 +62,7 @@ handleChange=(e)=>{
                        <form onSubmit={this.onSubmit}>
                        <textarea className="form-control form-control_lg" placeholder="About you..." name="about" value={this.state.about}onChange={this.handleChange} 
                        />
-                       {<small style={{marginBottom:"10px"}} className="form-text text-muted">add Description</small>}
+                       {<small style={{marginBottom:"10px"}} className="form-text text-muted">Add Description</small>}
                        {<div className="invalid-feedback">bio invalid </div>}
 
                        <input className="form-control form-control_lg" placeholder="address..." name="address" value={this.state.address}onChange={this.handleChange} />
@@ -63,6 +72,8 @@ handleChange=(e)=>{
                        <small className="d-block-pb-3" style={{color:"red",float:"right"}}>*=required fileds</small>                     
                        
                        <input className="form-control form-control_lg" placeholder="* Your phone..." name="phone" value={this.state.phone}onChange={this.handleChange}   required/>
+                       {<small style={{marginBottom:"10px"}} className="form-text text-muted">Add a phone number</small>}
+                       {<div className="invalid-feedback">bio invalid </div>}
                         <input className="form-control form-control_lg" placeholder="* Your field..." name="field" value={this.state.field}onChange={this.handleChange}   required/>
                        {<small className="form-text text-muted">add your situation</small>}
                        {<div className="invalid-feedback">you must add your status </div>}
