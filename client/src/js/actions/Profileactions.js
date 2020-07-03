@@ -67,7 +67,7 @@ export const AddProfile = (compdets) => async (
 
 
 
-    export const deleteprof = (compdets) => async (
+    export const deleteprof = (id) => async (
       dispatch
     ) => {
       try {
@@ -77,7 +77,7 @@ export const AddProfile = (compdets) => async (
           }
         };
     
-         axios.delete( `/companysprofile` , compdets, config)
+         axios.delete( `/companysprofile/${id}` , config)
         }
          catch (err)
          {dispatch({

@@ -45,7 +45,7 @@ import Companysprofile from './Companysaccount';
     
 
       companysProfile =( 
-        <div>
+        <div className='comprofdiv'>
         <p className="lead text-muted">Welcome {profile.name}</p>
         <p>Please Add Some Informations about your Company</p>
         <Link to='./createProfile' className="btn btn-lg btn-info">Upgrade Your Profile </Link>

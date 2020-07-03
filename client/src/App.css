@@ -619,6 +619,16 @@ body{
     
   }
   
+
+
+
+
+
+/*from here */
+
+
+
+  
   @import '~antd/dist/antd.css';
 
 
@@ -626,6 +636,7 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-left: 200px;
 }
 .input{
   width: 90%;
@@ -948,7 +959,9 @@ height: 500px;
       animation: 0.2s linear 1 expand;
     }
   
-
+.comprofdiv{
+  margin-left: 200px;
+}
   .inputbutton {
     background-color: #1369ce;
     border: none;

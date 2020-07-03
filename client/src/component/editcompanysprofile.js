@@ -34,16 +34,25 @@ this.setState({
 
 
 onSubmit=(e)=>{
-    e.preventDefault();
-   const compdets={
-       about:this.state.about,
-       field:this.state.field,
-       phone: this.state.phone,
-       address: this.state.address,
-
-
-   } 
-   this.props.AddProfile(compdets)
+    if ( !this.state.about || !this.state.phone || !this.state.address|| !this.state.field)  {
+        alert('All Fields are required !')
+              } 
+        
+              else if (this.state.phone.length !== 8 ) {
+                alert('Please enter a valid  phone number')
+              }
+        
+              else if (this.state.about.length > 120 ) {
+                alert('You have exceeded the numbers of characters allowed')
+              }
+               else { const compdets={
+                  about:this.state.about,
+                  address:this.state.address,
+                  phone: this.state.phone,
+                  field: this.state.field,
+            
+              } 
+              this.props.AddProfile(compdets)}
 }
 
   

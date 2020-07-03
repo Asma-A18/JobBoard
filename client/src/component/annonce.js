@@ -15,18 +15,11 @@ import { isAuthorized } from '../js/actions/actions';
 class JobsList extends React.Component {
   componentDidMount() {
     this.props.getcurrentAnnonce()
-
-
   }
   render() {
     const { isAuth, profile } = this.props;
-    //console.log(profile)
-    console.log(isAuth)
-    return isAuth ? (+
-      <Redirect to='/login' />
-    ) : (<div>
-      <Nav profil={profile}> </Nav>
-      
+    return isAuth ? (+<Redirect to='/login' />) : (<div> <Nav profil={profile}> </Nav>
+  
       <div className="content">
    <div className='jobscontainer'>
 {this.props.jobsList.map((el,i)=>(

@@ -148,7 +148,6 @@ import Footer from './layout/footer'
                               </div>
                           </div>
                       </form> 
-                      <button>del</button>          
                   </div>
                   </div>
         )
@@ -160,4 +159,4 @@ const mapStateToProps = state => ({
   isAuth: state.authReducer.isAuth,
  profile: state.authReducer.profile,
   });
-  export default connect(mapStateToProps, null)(Companysprofile);
+  export default connect(mapStateToProps, {})(Companysprofile);
