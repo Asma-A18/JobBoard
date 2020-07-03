@@ -9,8 +9,8 @@ import {GET_COMPANY,COMPANY_LOADING,GET_ERRORS,CLEAR_COMPANY} from '../constants
 
 
 
-export const getcurrentcompany=()=>async (dispatch)=>{
-    dispatch(setcompanyLoading());
+export const getcompany=()=>async (dispatch)=>{
+    dispatch(companyLoading());
     const config = {
       headers: {
         Authorization: localStorage.getItem('token')
@@ -32,13 +32,12 @@ export const getcurrentcompany=()=>async (dispatch)=>{
 
 
 //profile loading
-export const setcompanyLoading=()=>{
+export const companyLoading=()=>{
     return{
         type:COMPANY_LOADING,
     }
 }
 
-//profile loading
 export const clearCompany=()=>{
   return{
       type:CLEAR_COMPANY,
@@ -46,8 +45,7 @@ export const clearCompany=()=>{
 }
 
 
-// Create or update profile
-export const createProfile = (formData, history) => async (
+export const AddProfile = (compdets) => async (
   dispatch
 ) => {
   try {
@@ -57,7 +55,7 @@ export const createProfile = (formData, history) => async (
       }
     };
 
-     axios.post('/companysprofile', formData, config).then (res=> history.push('./profileCompany'))
+     axios.post('/companysprofile', compdets, config)
     }
      catch (err)
      {dispatch({
@@ -69,27 +67,25 @@ export const createProfile = (formData, history) => async (
 
 
 
+    export const deleteprof = (compdets) => async (
+      dispatch
+    ) => {
+      try {
+        const config = {
+          headers: {
+            Authorization: localStorage.getItem('token')
+          }
+        };
+    
+         axios.delete( `/companysprofile` , compdets, config)
+        }
+         catch (err)
+         {dispatch({
+            type:GET_ERRORS,
+            payload:err.response.data
+          })
+        }}
 
-
-    // UPDATE profile
-// export const editprofile = (formData, history) => async (
-//   dispatch
-// ) => {
-//   try {
-//     const config = {
-//       headers: {
-//         Authorization: localStorage.getItem('token')
-//       }
-//     };
-
-//      axios.put(`/companysprofile/${id}` , formData, config).then (res=> history.push('./profileCompany'))
-//     }
-//      catch (err)
-//      {dispatch({
-//         type:GET_ERRORS,
-//         payload:err.response.data
-//       })
-//     }}
-
+   
 
     

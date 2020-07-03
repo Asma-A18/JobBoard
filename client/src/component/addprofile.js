@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Footer from './layout/footer'
 import Nav from './Navbar';
-import {createProfile} from '../js/actions/Profileactions'
+import {AddProfile} from '../js/actions/Profileactions'
 import { Link, withRouter } from 'react-router-dom';
 
 
@@ -20,25 +20,27 @@ constructor(props){
     }
 }
 
-
-onSubmit=(e)=>{
-    e.preventDefault();
-    const profileData={
-      about:this.state.about,
-      address:this.state.address,
-      phone: this.state.phone,
-      field: this.state.field,
-
-  } 
-  this.props.createProfile(profileData,this.props.history)
-  this.verifyChamps()
-
-}
-
-verifyChamps=()=>{
-    if (  !this.state.about || !this.state.address || !this.state.phone || !this.state.field)  {
-alert('All Fields are required !')
-    }
+addprof=()=>{
+    if ( !this.state.about || !this.state.phone || !this.state.address|| !this.state.field)  {
+      alert('All Fields are required !')
+            } 
+      
+            else if (this.state.phone.length !== 8 ) {
+              alert('Please enter a valid  phone number')
+            }
+      
+            else if (this.state.about.length > 120 ) {
+              alert('You have exceeded the numbers of characters allowed')
+            }
+             else { const compdets={
+                about:this.state.about,
+                address:this.state.address,
+                phone: this.state.phone,
+                field: this.state.field,
+          
+            } 
+            this.props.AddProfile(compdets)}
+     
   }
 
 
@@ -54,36 +56,14 @@ handleChange=(e)=>{
             <div>
                 <Nav/>
                 <div className="content"> 
-               <div className="container">
-                   <div className="row">
-                       <div className="col-md-8 m-auto">
-                           <h1 className="display-4 text-center">Create Your Profile</h1>
-                           <p classNale="lead" style={{marginLeft:"200px"}}>Let's get some informations about you</p>
-                       <form onSubmit={this.onSubmit}>
-                       <textarea className="form-control form-control_lg" placeholder="About you..." name="about" value={this.state.about}onChange={this.handleChange} 
-                       />
-                       {<small style={{marginBottom:"10px"}} className="form-text text-muted">Add Description</small>}
-                       {<div className="invalid-feedback">bio invalid </div>}
+                <div className="container-input">
+          <input className="input" placeholder="Add a Short description about you " type="text" name="about" value={this.state.about} onChange={this.handleChange}/>
+          <input className="input" placeholder="Add You Field : Marketing, Web Dev , bitcoin etc..." type="text"   name="field" value={this.state.field} onChange={this.handleChange}/>
+          <input className="input" placeholder="Add  your Address" type="text"   name="address" value={this.state.address} onChange={this.handleChange}/>
+          <input className="input" placeholder="Add your phone number" type="number"   name="phone" value={this.state.phone} onChange={this.handleChange}/>
+          <button className='inputbutton' type="primary" onClick={this.addprof}>Submit </button>
 
-                       <input className="form-control form-control_lg" placeholder="address..." name="address" value={this.state.address}onChange={this.handleChange} />
-                       {<small style={{marginBottom:"10px"}} className="form-text text-muted">please seperate your skills with ,</small>}
-                       {<div className="invalid-feedback">inviled skills</div>}
-                    
-                       <small className="d-block-pb-3" style={{color:"red",float:"right"}}>*=required fileds</small>                     
-                       
-                       <input className="form-control form-control_lg" placeholder="* Your phone..." name="phone" value={this.state.phone}onChange={this.handleChange}   required/>
-                       {<small style={{marginBottom:"10px"}} className="form-text text-muted">Add a phone number</small>}
-                       {<div className="invalid-feedback">bio invalid </div>}
-                        <input className="form-control form-control_lg" placeholder="* Your field..." name="field" value={this.state.field}onChange={this.handleChange}   required/>
-                       {<small className="form-text text-muted">add your situation</small>}
-                       {<div className="invalid-feedback">you must add your status </div>}
-                           <input type="submit" value="Submit" className="btn btn-info btn-block mt-4"/> 
-                           </form>
-                       </div>
-
-
-                   </div>
-               </div>
+          </div>
                 </div>
                 <Footer/>
             </div>
@@ -93,9 +73,8 @@ handleChange=(e)=>{
 
 const mapStateToProps = (state) => ({
     company:state.companyreducer.company,
-    errors:state.errorReducer
 })
 
 
 
-export default connect(mapStateToProps, {createProfile})(withRouter(UpgradeProf))
+export default connect(mapStateToProps, {AddProfile})(withRouter(UpgradeProf))

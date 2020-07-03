@@ -28,45 +28,37 @@ class JobsList extends React.Component {
       <Nav profil={profile}> </Nav>
       
       <div className="content">
-      <div class="search-container">
-      <input type="text" placeholder="Search.." name="search"/>
-      <button type="submit"><i class="fa fa-search"></i></button>
-      </div>
-
-
-
+   <div className='jobscontainer'>
 {this.props.jobsList.map((el,i)=>(
-    <div>
-     <article className="job-card">
-  <div className="company-logo-img">
-    <img src="https://s3-ap-southeast-1.amazonaws.com/hs.user-files/employer_logo/346/primetech-technology.png" />
-  </div>
-  <p className="job-title">{el.ref}</p>
-  <p className="company-name">{el.name}</p>
-  <p className="desc">{el.description}</p>
-  <p className="desc">{el.deadline}</p>
-  <div class="skills-container">
-    <div className="skill">{el.telephone}</div>
-    <div className="skill">{el.email}</div>
-  </div>
-  <button onClick={()=>this.props.deleteoffer(el._id)} class="apply">Delete</button>
-  <a href="#"></a>
-  <div className="container-btn">
-<AddOffer offers={el}/>
+
+<div id="wrapper">
+  <div class="card card-1">
+    <div class="work-rate">
+     <p onClick={()=> this.props.deleteoffer(el._id)}>x</p>
 </div>
-</article>
-
-  </div>
-
+    <div class="pos-nd-loc">
+    <p class="job-title">{el.name}</p>
+    <p class="email">{el.email}</p>
+      </div>
+    <div class="tags">
+      <button>{el.ref}</button>
+      <button>{el.telephone}</button>
+    </div>
+    <p class="job-desc">
+ {el.description}
+    </p>
+    <AddOffer offers={el}/>      </div>
+</div>
 
 ))}
-</div>
 
-
+  </div>
+  </div>
+  </div>
      
-    </div>
+   
 
-    );
+    )
   }
 }
 const mapStateToProps = state => ({

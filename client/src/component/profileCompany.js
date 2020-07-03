@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
  import { Redirect } from 'react-router-dom';
 import Nav from './Navbar';
 import {Link} from 'react-router-dom'
- import { getcurrentcompany } from '../js/actions/Profileactions';
+ import { getcompany } from '../js/actions/Profileactions';
  import {isAuthorized  } from '../js/actions/actions';
 import Footer from './layout/footer' 
 import Spinner from './spinner'
@@ -16,7 +16,7 @@ import Companysprofile from './Companysaccount';
   
  componentDidMount() {
    
-  this.props.getcurrentcompany();
+  this.props.getcompany();
  
  }
 // deleteAccount(){
@@ -24,10 +24,10 @@ import Companysprofile from './Companysaccount';
 // }
  render() {
   const {profile,isLoading,company}=this.props;
-  let dach ;
+  let companysProfile ;
   if(company===null||isLoading){
   
-    dach = <Spinner/>
+    companysProfile = <Spinner/>
    
   }
   else{
@@ -35,25 +35,20 @@ import Companysprofile from './Companysaccount';
     //check profile empty or not
     if(Object.keys(company).length>0)
     {
-      dach = (
+      companysProfile = (
          <div>
- <p className="lead text-muted">Hello {profile.name} Welcome Among us ! :)  </p>
  <Companysprofile account={company}/>
-<div style={{marginTop:"60px"}}>
-  <Link to ="/" style={{marginLeft:"800px"}} className="btn btn-danger"><strong>Delete Account</strong></Link>
-</div>
       </div>
       
        ) }
     else {
-      //user has no proofile
     
 
-      dach =( 
+      companysProfile =( 
         <div>
         <p className="lead text-muted">Welcome {profile.name}</p>
-        <p>You have not yet setup a profile,please add something about you</p>
-        <Link to='./createProfile' className="btn btn-lg btn-info">Create profile </Link>
+        <p>Please Add Some Informations about your Company</p>
+        <Link to='./createProfile' className="btn btn-lg btn-info">Upgrade Your Profile </Link>
         </div>
       )
     }
@@ -62,20 +57,12 @@ import Companysprofile from './Companysaccount';
     <div>
       <Nav/>
      <div className="content">
-     
-            
-            <div class="jumbotron jumbotron-fluid" style={{marginTop:"-30px",marginLeft:"-50px"}}>
-  <div class="container">
-    <h1 class="display-4 "><strong>Profile Account</strong> </h1>
-    <p class="lead"></p>
-  </div>
-</div>
-            {dach}
+    
+            {companysProfile}
          
           </div>
     
 
- <Footer/>
   
    </div> 
     
@@ -87,4 +74,4 @@ import Companysprofile from './Companysaccount';
 profile: state.authReducer.profile,
 company:state.companyreducer.company
  });
- export default connect(mapStateToProps, { getcurrentcompany ,isAuthorized })(ProfileC);
+ export default connect(mapStateToProps, { getcompany ,isAuthorized })(ProfileC);

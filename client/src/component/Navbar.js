@@ -50,9 +50,9 @@ class Navbar extends Component {
         
       </center>
      
-      <Link  to ={`/annonce`}><i className="fas fa-table"></i><span>Annonces</span></Link>
-      <Link to="/profileCompany"><i className="fas fa-info-circle"></i><span>About</span></Link>
-      <Link to="#"><i class="fas fa-sliders-h"></i><span>Settings</span></Link>
+      <Link  to ={`/annonce`}><i className="fas fa-table"></i><span>Your Offers</span></Link>
+      <Link to="/profileCompany"><i className="fas fa-info-circle"></i><span>Your Account</span></Link>
+      <Link to="#"><i class="fas fa-sliders-h"></i><span>Contact Form</span></Link>
     </div>
             </div>
         )
@@ -62,4 +62,4 @@ const mapStateToProps = state => ({
   isAuth: state.authReducer.isAuth,
   profile: state.authReducer.profile
 });
-export default connect(mapStateToProps, { isAuthorized,logout,clearEmploye})( Navbar);
+export default connect(mapStateToProps, { isAuthorized,logout})( Navbar);

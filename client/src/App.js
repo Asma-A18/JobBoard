@@ -29,26 +29,20 @@ function App() {
   }, []);
   return (
     <div className="App">
-      {/* <AddOffer/> */}
-         {/* <UpdateProfile/> */}
-        {/* <ProfileInfos/>  */}
       <BrowserRouter>
       <Switch>
-      {/* <Route exact path='/' component={Navbar} /> */}
         <Route exact path='/' component={Signup} />
         <Route exact path='/login' render={props=><Signin {...props}/>} />
         <Route exact path='/profileCompany' render={props=><ProfileC {...props}/>} />
-        {/* <Route exact path='/companysprofile/:id' render={props=><ProfileInfos {...props}/>} /> */}
         <Route exact path='/createProfile' render={props=><UpgradeProf {...props}/>} />
-        <Route exact path='/updateprofile' render={props=><UpdateProfile {...props}/>} />
-
-        
-
-        {/* <Route exact path ='/offers' render={props =>   <JobsList {...props}/>} /> */}
-        <Route exact path='/annonce' component={JobsList}/>
-        <Route exact path='/addoffer' component={AddOffer}/>
-
+        <Route exact path='/updateprofile' render={props=><UpdateProfile {...props}/>} />      
       </Switch>
+     
+      <Route exact path="/annonce" render={() =>( 
+          <div>
+        <JobsList/>
+        <AddOffer/>
+        </div>)} />
       </BrowserRouter>
     </div>
   );
